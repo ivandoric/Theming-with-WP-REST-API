@@ -1,0 +1,55 @@
+// Single Post Preview
+
+.postshow-transition{
+    transition: all .5s ease;
+    opacity:1;
+}
+
+.postshow-enter,
+.postshow-leave{
+    opacity:0;
+    right:-100%;
+}
+
+// Overlay 
+.overlayshow-transition{
+    transition: all 1s ease;
+    opacity:1;
+}
+
+.overlayshow-enter,
+.overlayshow-leave{
+    opacity:0;
+}
+
+// Filter
+
+.filter-transition{
+    transition: all .5s ease;
+    top:0;
+}
+
+.filter-enter,
+.filter-leave{
+    position: relative;
+    top:-200px;
+}
+
+// Loader
+
+.loader-transition{
+    transition: all .5s ease;
+    width:100%;
+}
+
+.loader-enter,
+.loader-leave{
+    position: fixed;
+    top:0;
+    left:0;
+    width:0;
+    height:5px;
+    background: #000;
+}
+
+

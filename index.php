@@ -13,6 +13,7 @@
     <div class="container">
         <div class="post-list">
             <article v-for="post in posts" class="post">
+                <img v-bind:src="post.fi_300x180">
                 <div class="post-content">
                     <h2>{{ post.title.rendered }}</h2>
                 </div>

@@ -20,7 +20,7 @@ add_theme_support( 'post-thumbnails' );
 
 /* Add custom thumbnail sizes */
 if ( function_exists( 'add_image_size' ) ) {
-    //add_image_size( 'custom-image-size', 500, 500, true );
+    add_image_size( '300x180', 300, 180, true );
 }
 
 /* Add widget support */
@@ -60,3 +60,25 @@ function excerpt($limit) {
     $excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
     return $excerpt;
 }
+
+/*
+|--------------------------------------------------------------------------
+| Prepare REST
+|--------------------------------------------------------------------------
+*/
+
+function prepare_rest($data, $post, $request){
+    $_data = $data->data;
+
+    $thumbnail_id = get_post_thumbnail_id( $post->ID );
+    $thumbnail300x180 = wp_get_attachment_image_src( $thumbnail_id, '300x180' );
+    $thumbnailMedium = wp_get_attachment_image_src( $thumbnail_id, 'medium' );
+
+
+    $_data['fi_300x180'] = $thumbnail300x180[0];
+    $_data['fi_medium'] = $thumbnailMedium[0];
+    $data->data = $_data;
+
+    return $data;
+}
+add_filter('rest_prepare_post', 'prepare_rest', 10, 3);

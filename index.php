@@ -16,6 +16,9 @@
                 <img v-bind:src="post.fi_300x180">
                 <div class="post-content">
                     <h2>{{ post.title.rendered }}</h2>
+                    <small v-for="category in post.cats">
+                        {{ category.name }}
+                    </small>
                 </div>
             </article>
         </div>

@@ -4,7 +4,8 @@ var postList = Vue.extend({
     template:'#post-list-template',
     data: function(){
         return {
-            posts: ''
+            posts: '',
+            nameFilter: ''
         }
     },
 

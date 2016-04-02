@@ -5,15 +5,22 @@ var postList = Vue.extend({
     data: function(){
         return {
             posts: '',
-            nameFilter: ''
+            nameFilter: '',
+            categoryFilter: '',
+            categories: ''
         }
     },
 
     ready: function(){
         posts = this.$resource('/wp-json/wp/v2/posts?per_page=20');
+        categories = this.$resource('/wp-json/wp/v2/categories');
 
         posts.get(function(posts){
             this.$set('posts', posts);
+        })
+
+        categories.get(function(categories){
+            this.$set('categories', categories);
         })
     }
 })

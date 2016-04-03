@@ -7,7 +7,10 @@ var postList = Vue.extend({
             posts: '',
             nameFilter: '',
             categoryFilter: '',
-            categories: ''
+            categories: '',
+            showFilter: false,
+            filterBtnOpen: true,
+            filterBtnClose: false
         }
     },
 
@@ -22,6 +25,20 @@ var postList = Vue.extend({
         categories.get(function(categories){
             this.$set('categories', categories);
         })
+    },
+
+    methods: {
+        openFilter: function(){
+            this.$set('showFilter', true);
+            this.$set('filterBtnOpen', false);
+            this.$set('filterBtnClose', true);
+        },
+
+        closeFilter: function(){
+            this.$set('showFilter', false);
+            this.$set('filterBtnOpen', true);
+            this.$set('filterBtnClose', false);
+        }
     }
 })
 

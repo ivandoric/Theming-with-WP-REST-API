@@ -49,7 +49,9 @@
     <div class="container">
         <div class="post-list">
             <article v-for="post in posts | filterBy nameFilter in 'title' | filterBy categoryFilter in 'categories'" class="post">
-                <img v-bind:src="post.fi_300x180">
+                <a v-on:click="getThePost(post.id)">
+                    <img v-bind:src="post.fi_300x180">
+                </a>
                 <div class="post-content">
                     <h2>{{ post.title.rendered }}</h2>
                     <small v-for="category in post.cats">
@@ -57,6 +59,18 @@
                     </small>
                 </div>
             </article>
+        </div>
+    </div>
+
+    <div class="single-preview">
+        <h2>{{ post[0].title.rendered }}</h2>
+
+        <div class="image">
+            <img v-bind:src="post[0].fi_300x180">
+        </div>
+
+        <div class="post-content">
+            {{{ post[0].excerpt.rendered }}}
         </div>
     </div>
 

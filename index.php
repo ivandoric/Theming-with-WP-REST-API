@@ -66,12 +66,20 @@
         <h2>{{ post[0].title.rendered }}</h2>
 
         <div class="image">
-            <img v-bind:src="post[0].fi_300x180">
+            <img v-bind:src="post[0].full">
         </div>
 
         <div class="post-content">
             {{{ post[0].excerpt.rendered }}}
         </div>
+
+        <a v-on:click="getThePost(post[0].next_post)" v-if="post[0].next_post" class="post-nav next">
+            <span class="icon-right"></span>
+        </a>
+        
+        <a v-on:click="getThePost(post[0].previous_post)" v-if="post[0].previous_post" class="post-nav prev">
+            <span class="icon-left"></span>
+        </a>
     </div>
 
 </template>

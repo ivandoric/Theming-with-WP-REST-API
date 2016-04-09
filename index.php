@@ -11,6 +11,8 @@
 
 <template id="post-list-template">
 
+    <div class="overlay" v-if="show" transition="overlayshow"></div>
+
     <header class="main-header">
         <img class="hero" src="<?php bloginfo('template_url'); ?>/images/hero.jpg" alt="">    
     </header>
@@ -62,7 +64,7 @@
         </div>
     </div>
 
-    <div class="single-preview">
+    <div class="single-preview" v-if="show" transition="postshow">
         <h2>{{ post[0].title.rendered }}</h2>
 
         <div class="image">
@@ -80,7 +82,11 @@
         <a v-on:click="getThePost(post[0].previous_post)" v-if="post[0].previous_post" class="post-nav prev">
             <span class="icon-left"></span>
         </a>
+
+        <button class="close-button" v-on:click="closePost()">&#215;</button>
     </div>
+
+
 
 </template>
 

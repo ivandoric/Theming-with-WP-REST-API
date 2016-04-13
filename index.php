@@ -73,6 +73,8 @@
 
         <div class="post-content">
             {{{ post[0].excerpt.rendered }}}
+
+            <a v-link="{name:'post', params:{postID: post[0].id }}" class="btn-read-more">Read more</a>
         </div>
 
         <a v-on:click="getThePost(post[0].next_post)" v-if="post[0].next_post" class="post-nav next">
@@ -85,9 +87,18 @@
 
         <button class="close-button" v-on:click="closePost()">&#215;</button>
     </div>
+</template>
 
 
+
+<template id="single-post-template">
+    
+    <div class="container single-post">
+        <h2>{{ post.title.rendered }}</h2>
+
+    </div>
 
 </template>
+
 
 <?php get_footer(); ?>

@@ -61,12 +61,30 @@ var postList = Vue.extend({
 })
 
 
+var singlePost = Vue.extend({
+    template: '#single-post-template',
+
+    route:{
+        data: function(){
+            this.$http.get('/wp-json/wp/v2/posts/' + this.$route.params.postID, function(post){
+                this.$set('post', post);
+            })
+        }
+    }
+
+});
+
+
 
 var router = new VueRouter();
 
 router.map({
     '/':{
         component: postList
+    },
+    'post/:postID':{
+        name:'post',
+        component: singlePost
     }
 });
 

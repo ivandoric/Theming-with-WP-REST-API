@@ -92,10 +92,31 @@
 
 
 <template id="single-post-template">
+    <div class="post-control">
+        <div class="container">
+            <a v-link="{path: '/'}" class="btn-read-more">Back to post list</a>
+        </div>
+
+        <a v-link="{ name: 'post', params:{ postID: post.next_post}}" v-if="post.next_post" class="post-nav next">
+            <span class="icon-right"></span>
+        </a>
+
+        <a v-link="{ name: 'post', params:{ postID: post.previous_post}}" v-if="post.previous_post" class="post-nav prev">
+            <span class="icon-left"></span>
+        </a>
+
+    </div>
     
     <div class="container single-post">
-        <h2>{{ post.title.rendered }}</h2>
+        <h2 class="title">{{ post.title.rendered }}</h2>
 
+        <div class="image">
+            <img v-bind:src="post.full">
+        </div>
+
+        <div class="post-content">
+            {{{ post.content.rendered }}}
+        </div>
     </div>
 
 </template>

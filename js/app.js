@@ -74,6 +74,19 @@ var singlePost = Vue.extend({
 
 });
 
+var movieList = Vue.extend({
+    template: '#movie-list-template',
+
+    route:{
+        data: function(){
+            this.$http.get('/wp-json/wp/v2/movies', function(movies){
+                this.$set('movies', movies);
+            })
+        }
+    }
+
+});
+
 
 
 var router = new VueRouter();
@@ -85,6 +98,9 @@ router.map({
     'post/:postID':{
         name:'post',
         component: singlePost
+    },
+    'movies':{
+        component: movieList
     }
 });
 

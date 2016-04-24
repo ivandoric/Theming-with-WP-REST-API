@@ -76,11 +76,18 @@ var singlePost = Vue.extend({
 
 var movieList = Vue.extend({
     template: '#movie-list-template',
+    data: function(){
+        return {
+            movies: '',
+        }
+    },
 
     route:{
         data: function(){
             this.$http.get('/wp-json/wp/v2/movies', function(movies){
                 this.$set('movies', movies);
+
+                console.log(JSON.stringify(movies));
             })
         }
     }

@@ -167,6 +167,8 @@
             <article v-for="movie in movies" class="post">
                 <div class="post-content">
                     <h2>{{ movie.title.rendered }}</h2>
+                    {{ movie.year }}
+                    {{ movie.director }}
                 </div>
             </article>
         </div>

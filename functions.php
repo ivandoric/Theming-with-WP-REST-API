@@ -98,3 +98,30 @@ function prepare_rest($data, $post, $request){
     return $data;
 }
 add_filter('rest_prepare_post', 'prepare_rest', 10, 3);
+
+add_action('rest_api_init', 'register_custom_fields', 1, 1);
+
+function register_custom_fields(){
+    register_rest_field(
+        'movies',
+        'year',
+        array(
+            'get_callback' => 'show_fields'
+        )
+    );
+
+    register_rest_field(
+        'movies',
+        'director',
+        array(
+            'get_callback' => 'show_fields'
+        )
+    );
+}
+
+function show_fields($object, $field_name, $request){
+    $field_name = 'wpcf-' . $field_name;
+    return get_post_meta($object['id'], $field_name, true);
+}
+
+

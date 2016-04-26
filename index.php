@@ -165,6 +165,10 @@
     <div class="container">
         <div class="post-list">
             <article v-for="movie in movies" class="post">
+                <div class="image">
+                    <img v-bind:src="movie.thumbnail">
+                </div>
+
                 <div class="post-content">
                     <h2>{{ movie.title.rendered }}</h2>
                     {{ movie.year }}

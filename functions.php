@@ -117,11 +117,27 @@ function register_custom_fields(){
             'get_callback' => 'show_fields'
         )
     );
+
+    register_rest_field(
+        'movies',
+        'thumbnail',
+        array(
+            'get_callback' => 'show_image'
+        )
+    );    
 }
 
 function show_fields($object, $field_name, $request){
     $field_name = 'wpcf-' . $field_name;
     return get_post_meta($object['id'], $field_name, true);
 }
+
+function show_image($object, $field_name, $request){
+    $thumbID = get_post_thumbnail_id($object['id']);
+    $image = wp_get_attachment_image_src( $thumbID, '300x180');
+    return $image[0];
+}
+
+
 
 

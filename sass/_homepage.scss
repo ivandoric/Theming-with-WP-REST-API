@@ -271,3 +271,41 @@
     height:100%;
     background: rgba(black, .5);
 }
+
+/*
+|--------------------------------------------------------------------------
+| Pagination
+|--------------------------------------------------------------------------
+*/
+
+.pagination{
+    padding:20px;
+    margin-bottom: 100px;
+    text-align: center;
+    
+    span{
+        display: block;
+        margin-bottom: 20px;
+    }
+    
+    .btn{
+        padding:10px;
+        text-align: center;
+        border:none;
+        background: #7BDBFF;
+        color: darken(#7BDBFF, 50%);
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family: Helvetica Neue, Arial, sans-serif;
+        border-radius:5px;
+        cursor: pointer;
+        width:200px;
+        outline: none;
+        
+        &:disabled{
+            background: #ccc;
+            color: #999;
+        }
+    }
+}

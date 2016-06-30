@@ -12,24 +12,57 @@ var postList = Vue.extend({
             filterBtnOpen: true,
             filterBtnClose: false,
             post:'',
-            show: false
+            show: false,
+            allPages: '',
+            prev_page: '',
+            next_page: '',
+            currentPage: ''
         }
     },
 
     ready: function(){
-        posts = this.$resource('/wp-json/wp/v2/posts?per_page=20');
+        
         categories = this.$resource('/wp-json/wp/v2/categories');
-
-        posts.get(function(posts){
-            this.$set('posts', posts);
-        })
-
         categories.get(function(categories){
             this.$set('categories', categories);
         })
+
+        this.getPosts(1);
     },
 
     methods: {
+
+        getPosts: function(pageNumber){
+            posts = '/wp-json/wp/v2/posts?filter[posts_per_page]=6&page=' + pageNumber;
+
+            this.currentPage = pageNumber;
+
+            this.$http.get(posts).then(function(response){
+                this.$set('posts', response.data);
+                this.makePagination(response);
+            });
+        },
+
+        makePagination: function(data){
+            this.$set('allPages', data.headers('X-WP-TotalPages'));
+
+            //Setup prev page
+            if(this.currentPage > 1){
+                this.$set('prev_page', this.currentPage - 1);
+            } else {
+                this.$set('prev_page', null);
+            }
+
+            // Setup next page
+            if(this.currentPage == this.allPages){
+                this.$set('next_page', null);
+            } else {
+                this.$set('next_page', this.currentPage + 1);
+            }
+            
+
+        },
+
         getThePost: function(id){
             var posts = this.posts;
 

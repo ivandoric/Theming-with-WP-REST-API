@@ -63,6 +63,17 @@
                 </div>
             </article>
         </div>
+
+        <div class="pagination">
+            <span>Page {{currentPage}} of {{allPages}}</span>
+            <button class="btn" v-on:click="getPosts(prev_page)" :disabled="!prev_page">
+                Previous
+            </button>
+            
+            <button class="btn" v-on:click="getPosts(next_page)" :disabled="!next_page">
+                Next
+            </button>
+        </div>
     </div>
 
     <div class="single-preview" v-if="show" transition="postshow">

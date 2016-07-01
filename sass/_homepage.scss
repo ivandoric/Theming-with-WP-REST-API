@@ -263,13 +263,30 @@
 |--------------------------------------------------------------------------
 */
 
-.overlay{
+.overlay, .loading-overlay{
     position: fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
     background: rgba(black, .5);
+}
+
+
+
+.loading{
+    width:300px;
+    background: #000;
+    text-transform: uppercase;
+    position: fixed;
+    font-weight: 700;
+    color:#fff;
+    top:50%;
+    left:50%;
+    text-align: center;
+    margin-left: -150px;
+    margin-top: -10px;
+    padding:20px;
 }
 
 /*

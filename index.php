@@ -13,6 +13,10 @@
 
     <div class="overlay" v-if="show" transition="overlayshow"></div>
 
+    <div class="loading-overlay" v-if="loading">
+        <div class="loading">Loading...</div>
+    </div>
+
     <header class="main-header">
         <img class="hero" src="<?php bloginfo('template_url'); ?>/images/hero.jpg" alt="">    
     </header>

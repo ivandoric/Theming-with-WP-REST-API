@@ -16,7 +16,8 @@ var postList = Vue.extend({
             allPages: '',
             prev_page: '',
             next_page: '',
-            currentPage: ''
+            currentPage: '',
+            loading: ''
         }
     },
 
@@ -37,9 +38,13 @@ var postList = Vue.extend({
 
             this.currentPage = pageNumber;
 
+            this.$set('loading', true);
+            
             this.$http.get(posts).then(function(response){
                 this.$set('posts', response.data);
                 this.makePagination(response);
+
+                this.$set('loading', false);
             });
         },
 
